@@ -2,6 +2,7 @@ package lk.aulakapora.vehiculohub.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import lk.aulakapora.vehiculohub.dto.VehicleDTO;
 import lk.aulakapora.vehiculohub.model.VehicleModel;
@@ -36,7 +37,13 @@ public class CreateVehicleController {
 
         VehicleDTO vehicleDTO = new VehicleDTO(brand,model,eCapacity,tMode,qty,price);
 
-        VehicleModel.addVehicle(vehicleDTO);
+
+
+        if (VehicleModel.addVehicle(vehicleDTO)) {
+            showAlert("Success", "Vehicle added successfully!", Alert.AlertType.INFORMATION);
+        } else {
+            showAlert("Error", "Failed to add vehicle.", Alert.AlertType.INFORMATION);
+        }
 
     }
 
@@ -44,6 +51,16 @@ public class CreateVehicleController {
     void  exitbutton (ActionEvent actionEvent){
         System.exit(0);
     }
+
+    void showAlert(String title, String msg, Alert.AlertType alertType){
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
+
+
 
 
 }
