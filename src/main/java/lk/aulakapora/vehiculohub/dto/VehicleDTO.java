@@ -8,6 +8,20 @@ public class VehicleDTO {
     private String tMode;
     private int qty;
 
+    public VehicleDTO(String brand, String model, int eCapacity, String tMode, int qty, double price) {
+        this.brand = brand;
+        this.model = model;
+        this.eCapacity = eCapacity;
+        this.tMode = tMode;
+        this.qty = qty;
+        this.price = price;
+    }
+
+
+    //one of Java bean spec
+    public VehicleDTO() {
+    }
+
     public String getBrand() {
         return brand;
     }

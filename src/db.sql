@@ -16,6 +16,8 @@ CREATE TABLE vehicle
     price            DECIMAL(10, 2)
 );
 
+GRANT ALL PRIVILEGES ON vehiculo_hub.* TO 'Ishrath'@'localhost';
+FLUSH PRIVILEGES;
 
 
 
