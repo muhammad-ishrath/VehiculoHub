@@ -41,4 +41,28 @@ public class VehicleModel {
 
     }
 
+    public static boolean  deleteVehicle(int vid){
+
+
+        try {
+            Connection connection = DBConnection.getDBConnection().getConnection();
+
+            String deleteQuery = "DELETE FROM vehicle WHERE vid = ?";
+
+            PreparedStatement stm = connection.prepareStatement(deleteQuery);
+
+            stm.setInt(1,vid);
+            // executeQuery() for getting only
+            int update  = stm.executeUpdate();
+
+
+            // if data changed a number greater than 0
+            return update>0 ;
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

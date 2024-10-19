@@ -20,4 +20,9 @@ GRANT ALL PRIVILEGES ON vehiculo_hub.* TO 'Ishrath'@'localhost';
 FLUSH PRIVILEGES;
 
 
+INSERT INTO vehicle(brand,model,engineCapacity,transmissionMode,qty,price) VALUES
+    ("Toyota","Corolla",2500,'manual',5,20000.00),
+    ('Honda', 'Civic', 1800, 'manual', 7, 22000.00),
+    ('Mercedes', 'C-Class', 3000, 'manual', 5, 45000.00);
+
 

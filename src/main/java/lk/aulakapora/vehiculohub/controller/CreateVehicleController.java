@@ -40,9 +40,9 @@ public class CreateVehicleController {
 
 
         if (VehicleModel.addVehicle(vehicleDTO)) {
-            showAlert("Success", "Vehicle added successfully!", Alert.AlertType.INFORMATION);
+            MenuVehicleController.showAlert("Success", "Vehicle added successfully!", Alert.AlertType.INFORMATION);
         } else {
-            showAlert("Error", "Failed to add vehicle.", Alert.AlertType.INFORMATION);
+            MenuVehicleController.showAlert("Error", "Failed to add vehicle.", Alert.AlertType.INFORMATION);
         }
 
     }
@@ -52,13 +52,7 @@ public class CreateVehicleController {
         System.exit(0);
     }
 
-    void showAlert(String title, String msg, Alert.AlertType alertType){
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(msg);
-        alert.showAndWait();
-    }
+
 
 
 
