@@ -18,8 +18,17 @@ public class DBConnection {
         //step 01
         connection = DriverManager.getConnection(URL,USER,PASSWORD);
     }
-    public static DBConnection getDBConnection() throws SQLException{
-        if (dbConnection==null){
+//    public static DBConnection getDBConnection() throws SQLException{
+//        if (dbConnection==null){
+//            dbConnection = new DBConnection();
+//        }
+//        return dbConnection;
+//    }
+
+    public static DBConnection getDBConnection() throws SQLException {
+        if (dbConnection == null) {
+            dbConnection = new DBConnection();
+        } else if (dbConnection.getConnection().isClosed()) {
             dbConnection = new DBConnection();
         }
         return dbConnection;
