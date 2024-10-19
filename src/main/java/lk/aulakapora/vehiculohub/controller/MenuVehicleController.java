@@ -19,7 +19,7 @@ public class MenuVehicleController {
 
     @FXML
     void openViewAllVehicleWindow(ActionEvent actionEvent){
-
+        showWindow("/lk/aulakapora/vehiculohub/get-all-vehicle-view.fxml","Admin Dashboard");
     }
 
     @FXML

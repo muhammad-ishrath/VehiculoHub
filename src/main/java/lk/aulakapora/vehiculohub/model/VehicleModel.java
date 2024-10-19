@@ -1,7 +1,10 @@
 package lk.aulakapora.vehiculohub.model;
 
+import javafx.collections.ObservableList;
+import lk.aulakapora.vehiculohub.controller.GetAllVehicleController;
 import lk.aulakapora.vehiculohub.db.DBConnection;
 import lk.aulakapora.vehiculohub.dto.VehicleDTO;
+import lk.aulakapora.vehiculohub.tm.VehicleTM;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -63,6 +66,35 @@ public class VehicleModel {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static ObservableList<VehicleTM> viewAllVehicle() throws SQLException {
+
+        Connection connection = DBConnection.getDBConnection().getConnection();
+
+        String getAllQuery = "SELECT * FROM vehicle";
+
+        PreparedStatement stm = connection.prepareStatement(getAllQuery);
+
+        stm.executeQuery();
+
+        while (stm.getResultSet().next()){
+            int id  = stm.getResultSet().getInt("vid");
+            String brand   = stm.getResultSet().getString("brand");
+            String model  = stm.getResultSet().getString("model");
+            int engineCapacity  = stm.getResultSet().getInt("engineCapacity");
+            String transmissionMode  = stm.getResultSet().getString("transmissionMode");
+            int qty  = stm.getResultSet().getInt("qty");
+            double price  = stm.getResultSet().getInt("price");
+
+            VehicleTM vehicleTM = new VehicleTM(id,brand,model,engineCapacity,transmissionMode,qty,price);
+
+            System.out.println(vehicleTM);
+            GetAllVehicleController.vehicleList.add(vehicleTM);
+
+        }
+        return GetAllVehicleController.vehicleList;
+
     }
 
 }
