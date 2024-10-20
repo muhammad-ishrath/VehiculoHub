@@ -8,9 +8,20 @@ import lk.aulakapora.vehiculohub.tm.VehicleTM;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class VehicleModel {
+
+    static int id;
+    static String brand;
+    static String model;
+    static int engineCapacity;
+    static String transmissionMode;
+    static int qty;
+    static double price;
+
+
 
     public static boolean addVehicle(VehicleDTO vehicleDTO){
 
@@ -94,6 +105,36 @@ public class VehicleModel {
 
         }
         return GetAllVehicleController.vehicleList;
+
+    }
+
+    public static VehicleDTO  searchVehicle(int vid) throws SQLException {
+
+        Connection connection = DBConnection.getDBConnection().getConnection();
+
+        String searchQuery = " SELECT brand,model,engineCapacity,transmissionMode,qty,price FROM vehicle WHERE vid = ?";
+
+        PreparedStatement stm = connection.prepareStatement(searchQuery);
+
+        stm.setInt(1,vid);
+
+        stm.executeQuery();
+
+        if (stm.getResultSet().next()){
+            brand = stm.getResultSet().getString("brand");
+            model = stm.getResultSet().getString("model");
+            transmissionMode = stm.getResultSet().getString("transmissionMode");
+            engineCapacity = stm.getResultSet().getInt("engineCapacity");
+            qty = stm.getResultSet().getInt("qty");
+            price = stm.getResultSet().getInt("price");
+
+
+        }
+
+        VehicleDTO vehicleDTO = new VehicleDTO(brand,model,engineCapacity,transmissionMode,qty,price);
+
+        return vehicleDTO;
+
 
     }
 
