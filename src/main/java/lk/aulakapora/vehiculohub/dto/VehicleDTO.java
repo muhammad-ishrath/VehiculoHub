@@ -2,13 +2,25 @@ package lk.aulakapora.vehiculohub.dto;
 
 public class VehicleDTO {
 
+    private int vid;
     private String brand;
     private String model;
     private int eCapacity;
     private String tMode;
     private int qty;
+    private double price;
 
     public VehicleDTO(String brand, String model, int eCapacity, String tMode, int qty, double price) {
+        this.brand = brand;
+        this.model = model;
+        this.eCapacity = eCapacity;
+        this.tMode = tMode;
+        this.qty = qty;
+        this.price = price;
+    }
+
+    public VehicleDTO(int vid, String brand, String model, int eCapacity, String tMode, int qty, double price) {
+        this.vid = vid;
         this.brand = brand;
         this.model = model;
         this.eCapacity = eCapacity;
@@ -70,7 +82,15 @@ public class VehicleDTO {
         this.price = price;
     }
 
-    private double price;
+    public int getVid() {
+        return vid;
+    }
+
+    public void setVid(int vid) {
+        this.vid = vid;
+    }
+
+   
 
 
 }

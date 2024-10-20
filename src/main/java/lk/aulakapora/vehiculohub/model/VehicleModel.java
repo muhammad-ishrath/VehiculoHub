@@ -138,4 +138,27 @@ public class VehicleModel {
 
     }
 
+    public static boolean updateVehicle(VehicleDTO vehicleDTO) throws SQLException {
+
+        Connection connection = DBConnection.getDBConnection().getConnection();
+
+        String updateQuery = "UPDATE vehicle SET brand = ?, model = ?, engineCapacity = ?, transmissionMode = ?, qty = ?, price = ? WHERE vid = ?";
+
+        PreparedStatement stm = connection.prepareStatement(updateQuery);   
+
+        stm.setString(1, vehicleDTO.getBrand());
+        stm.setString(2, vehicleDTO.getModel());
+        stm.setInt(3, vehicleDTO.geteCapacity());
+        stm.setString(4, vehicleDTO.gettMode());
+        stm.setInt(5, vehicleDTO.getQty());
+        stm.setDouble(6, vehicleDTO.getPrice());
+        stm.setInt(7, vehicleDTO.getVid());
+
+        stm.executeUpdate();
+
+        return stm.executeUpdate()>0;
+
+    }
+
+
 }
